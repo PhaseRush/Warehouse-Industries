@@ -10,7 +10,8 @@ public class Database {
   public static void init(String dbName, String port, String dbUsername, String dbPassword) {
     try {
       conn =
-          DriverManager.getConnection("jdbc:mysql://localhost:" + port + "/" + dbName, dbUsername, dbPassword);
+          DriverManager.getConnection(
+              "jdbc:mysql://localhost:" + port + "/" + dbName, dbUsername, dbPassword);
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
       System.out.println("SQLState: " + ex.getSQLState());
