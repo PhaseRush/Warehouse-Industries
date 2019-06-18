@@ -11,9 +11,9 @@ create view cust_track as
 
 #this var has to be kept tracked by variables
 set @var = 1;
+set @cid = 1;
 
 # these have to be inputed by the customer 
-set @cid = 1;
 set @size = "medium";
 set @weight = 1;
 
