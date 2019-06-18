@@ -24,6 +24,7 @@ public class Database {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   public static void query(TextField textField) {
     String text = textField.getText();
     try {
@@ -43,4 +44,7 @@ public class Database {
 =======
   // write sql executor code here
 >>>>>>> 570af6055e15dd278dd211aa0342aa7726050498
+=======
+  // write sql executor code here
+>>>>>>> c963e0170c605897f840083649a33febe0950d29
 }
