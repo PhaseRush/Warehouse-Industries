@@ -14,21 +14,30 @@ public class StartController {
 
   @FXML
   void onSubmitAsClient(ActionEvent event) {
+    // user put in username and password, then clicked log in as client
+    // tf_username will be what they typed into the username field, etc
     printFields();
   }
 
   @FXML
   void onSubmitAsEmployee(ActionEvent event) {
+    // user put in username and password, then clicked log in as employee
+    // tf_username will be what they typed into the username field, etc
+
     printFields();
   }
 
   @FXML
   void onSubmitAsManager(ActionEvent event) {
+    // user put in username and password, then clicked log in as manager
+    // tf_username will be what they typed into the username field, etc
     printFields();
   }
 
   @FXML
   void onSubmitSQL(ActionEvent event) {
+    // user input string to be interpreted as sql query, stored in tf_sql
+    // handle query accordingly
     printFields();
   }
 
