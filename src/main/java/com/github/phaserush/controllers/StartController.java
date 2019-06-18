@@ -3,6 +3,7 @@ package com.github.phaserush.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import com.github.phaserush.database.Database;
 
 public class StartController {
 
@@ -16,6 +17,8 @@ public class StartController {
   void onSubmitAsClient(ActionEvent event) {
     // user put in username and password, then clicked log in as client
     // tf_username will be what they typed into the username field, etc
+
+
     printFields();
   }
 
@@ -38,6 +41,7 @@ public class StartController {
   void onSubmitSQL(ActionEvent event) {
     // user input string to be interpreted as sql query, stored in tf_sql
     // handle query accordingly
+    Database.query(tf_sql);
     printFields();
   }
 
