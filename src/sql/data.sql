@@ -243,3 +243,14 @@ insert into works_at
 values (4, 3);
 insert into works_at
 values (5, 3);
+
+insert into managers
+values (1, 2);
+insert into managers
+values (2, 1);
+insert into managers
+values (3, 4);
+insert into managers
+values (4, 3);
+insert into managers
+values (5, 5);
