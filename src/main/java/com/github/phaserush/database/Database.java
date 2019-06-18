@@ -23,17 +23,13 @@ public class Database {
     }
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+// Execute an arbitrary sql query
+
   public static void query(TextField textField) {
     String text = textField.getText();
     try {
       Statement smt = conn.createStatement();
       ResultSet rs = smt.executeQuery(text);
-      while (rs.next()) {
-        String lastName = rs.getString("Lname");
-        System.out.println(lastName + "\n");
-      }
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
       System.out.println("SQLState: " + ex.getSQLState());
@@ -41,10 +37,8 @@ public class Database {
     }
   }
 
-=======
-  // write sql executor code here
->>>>>>> 570af6055e15dd278dd211aa0342aa7726050498
-=======
-  // write sql executor code here
->>>>>>> c963e0170c605897f840083649a33febe0950d29
+  public static void clientLogin(TextField username, TextField password) {
+    ;
+  }
+
 }

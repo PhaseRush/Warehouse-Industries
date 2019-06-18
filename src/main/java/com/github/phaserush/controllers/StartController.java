@@ -17,8 +17,7 @@ public class StartController {
   void onSubmitAsClient(ActionEvent event) {
     // user put in username and password, then clicked log in as client
     // tf_username will be what they typed into the username field, etc
-
-
+    Database.clientLogin(tf_username, tf_password);
     printFields();
   }
 
