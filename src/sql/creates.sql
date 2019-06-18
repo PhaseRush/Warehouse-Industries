@@ -168,3 +168,10 @@ create table works_at
    foreign key (warehouse_id) references warehouses (warehouse_id) on delete cascade
 );
 
+create table managers
+(
+	manager_id   int primary key,
+    warehouse_id int not null,
+    
+    foreign key (warehouse_id) references warehouses (warehouse_id) on delete cascade
+);
