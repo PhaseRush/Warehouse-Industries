@@ -41,6 +41,8 @@ public class StartController {
     printFields();
   }
 
+
+
   private void printFields() {
     System.out.println(
         String.format(
