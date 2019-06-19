@@ -63,7 +63,7 @@ public class Database {
     String pass = password.getText();
     try {
       Statement login = conn.createStatement();
-      ResultSet task = login.executeQuery("select id from login_worker l, emp_packages p where username = '"
+      ResultSet task = login.executeQuery("select * from login_worker l, emp_packages p where username = '"
               + user + "' and pass_word = '" + pass + "' and l.worker_id = p.worker_id");
 
       login = conn.createStatement();
