@@ -1,3 +1,4 @@
+
 create table worker_addresses
 (
    address     varchar(100) primary key,
@@ -35,6 +36,7 @@ create table packages
    client_id      int not null,
    package_size   varchar(50) default 'medium',
    package_weight int         default 10,
+   delivery_date  date not null,
 
    foreign key (client_id) references clients (client_id) on delete cascade
 );
@@ -106,12 +108,12 @@ create table warehouse_workers
 (
    worker_id    int primary key,
    warehouse_id int not null,
-   event_id     int not null,
+   storage_id   int not null,
    package_id   int not null,
 
    foreign key (worker_id) references workers (worker_id) on delete cascade,
    foreign key (warehouse_id) references warehouses (warehouse_id) on delete cascade,
-   foreign key (event_id, package_id) references incoming_packages (event_id, package_id) on delete cascade
+   foreign key (storage_id, package_id) references stored_packages (storage_id, package_id) on delete cascade
 );
 
 create table forklift_models
@@ -168,10 +170,3 @@ create table works_at
    foreign key (warehouse_id) references warehouses (warehouse_id) on delete cascade
 );
 
-create table managers
-(
-	manager_id   int primary key,
-    warehouse_id int not null,
-    
-    foreign key (warehouse_id) references warehouses (warehouse_id) on delete cascade
-);
