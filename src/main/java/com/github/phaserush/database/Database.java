@@ -3,6 +3,8 @@ package com.github.phaserush.database;
 import javax.xml.transform.Result;
 import java.sql.*;
 
+import com.github.phaserush.util.Util;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class Database {
@@ -43,16 +45,8 @@ public class Database {
               "username = '" + user + "' and pass_word = '" + pass + "' and p.client_id = log.client_id and p.package_id" +
               " = t.id");
 
-      // debugging stuff, can be removed in finished product
-      ResultSetMetaData idmd = id.getMetaData();
-      int columnsNumber = idmd.getColumnCount();
-      while (id.next()) {
-        for (int i = 1; i <= columnsNumber; i++) {
-          String columnValue = id.getString(i);
-          System.out.println(columnValue + " " + idmd.getColumnName(i));
-        }
-      }
-      //end debugging stuff
+      TableView tv = Util.getTableView(id);
+      Util.showTableWindow(tv);
 
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());

@@ -34,7 +34,6 @@ values (5, 'str4', '001');
 
 
 
-
 insert into workers
 values (1, 'str1', '01', DEFAULT);
 insert into workers
@@ -256,14 +255,14 @@ insert into managers
 values (5, 5);
 
 insert into login_cust
-values ('aaaa', '1111', 1)
+values ('aaaa', '1111', 1);
 insert into login_cust
-values ('HomerSimpson', 'doh', 2)
+values ('HomerSimpson', 'doh', 2);
 insert into login_cust
-values ('username', 'password', 3)
+values ('username', 'password', 3);
 
 insert into login_worker
-values('bbbb', '2222', 1)
+values ('bbbb', '2222', 1);
 
 insert into login_man
-values('MontyBurns', 'excellent', 1)
+values ('MontyBurns', 'excellent', 1)
