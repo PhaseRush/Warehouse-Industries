@@ -97,8 +97,36 @@ public class Database {
     String pass = password.getText();
     try {
       Statement login = conn.createStatement();
-      ResultSet id = login.executeQuery("select manager_id from login_man where username = '" + user +
-              "' and pass_word = '" + pass + "'");
+      ResultSet id = login.executeQuery("select * from login_man where username = '" + user + "' and pass_word = '"
+      + pass + "'");
+
+      if (id.next() != false) {
+
+        login = conn.createStatement();
+        ResultSet incoming = login.executeQuery("select * from incomingpackage");
+
+        login = conn.createStatement();
+        ResultSet outoing = login.executeQuery("select * from outgoingpackage");
+
+        login = conn.createStatement();
+        ResultSet workers = login.executeQuery("SELECT worker_id, truck_id, package_id FROM combined worker;");
+
+        login = conn.createStatement();
+        ResultSet storedPackages = login.executeQuery("select * from storedpackages");
+
+        login = conn.createStatement();
+        ResultSet truckCapacities = login.executeQuery("select * from filledcap");
+
+        login = conn.createStatement();
+        ResultSet drivesAllForklifts = login.executeQuery("select w.worker_id from workers w where not exists " +
+                "(select * from  forklifts f where not exists (select fd.forklift_id from forklift_drivers fd " +
+                "where w.worker_id = fd.worker_id and fd.forklift_id = f.forklift_id));");
+
+        login = conn.createStatement();
+        ResultSet clientOrderedThisWeek = login.executeQuery("SELECT COUNT(client_id), package_id FROM " +
+                "weeklyclients GROUP BY client_id;");
+
+      }
 
       // debugging stuff, can be removed in finished product
       ResultSetMetaData idmd = id.getMetaData();

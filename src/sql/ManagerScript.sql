@@ -44,7 +44,7 @@ create view combinedworker AS
 # see the role of a given worker from worker id (check if a column is not null)
 set @wid = 1;
 
-SELECT worker_id, trick_id, package_id
+SELECT worker_id, truck_id, package_id
 FROM combined worker;
 
 # Update a warehouse worker's role (updates worker because package_id is foreign key)
