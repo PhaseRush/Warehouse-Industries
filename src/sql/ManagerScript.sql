@@ -44,7 +44,7 @@ create view combinedworker AS
 # see the role of a given worker from worker id (check if a column is not null)
 set @wid = 1;
 
-SELECT worker_id, trick_id, package_id
+SELECT worker_id, truck_id, package_id
 FROM combined worker;
 
 # Update a warehouse worker's role (updates worker because package_id is foreign key)
@@ -98,3 +98,51 @@ values (workerid, warehouseid, storageid, packageid);
 
 insert into worker_addresses
 values (address, postalcode);
+
+# Manager can see which items are currently sitting in the warehouse
+CREATE VIEW storedpackages AS
+#Info on capacity of warehouse
+	SELECT s.package_id, w.capacity
+    FROM warehouses w
+    LEFT JOIN stores s ON
+		h.warehouse_id = s.warehouse_id
+	LEFT JOIN stored_packages p ON
+		p.package_id = s.package_id
+	#client_id is null when there is no delivery date
+	WHERE s.delivery_date IS NULL
+    ORDER BY w.warehouse_id;
+
+# Finds how filled a truck is
+CREATE VIEW filledcap AS
+	SELECT t.truck_id, t.capacity-t.package_weight AS remaining_cap
+    FROM trucks t;
+
+#Returns workers that drive all forklifts
+select w.worker_id 
+from workers w
+where not exists
+(select * from  forklifts f
+where not exists 
+(select fd.forklift_id 
+from forklift_drivers fd
+where w.worker_id = fd.worker_id and fd.forklift_id = f.forklift_id));
+
+# Returns the client_id's of those who have ordered something in the last week
+CREATE VIEW weeklyclients AS
+	SELECT client_id, package_id
+    FROM packages
+    WHERE delivery_date >= curdate() - INTERVAL DAYOFWEEK(curdate()) + 6 DAY
+    AND delivery_date < curdate() - INTERVAL DAYOFWEEK(curdate()) - 1 DAY
+    ORDER BY client_id;
+    
+SELECT COUNT(client_id), package_id
+FROM weeklyclients
+GROUP BY client_id;
+
+#Returns the package_id's from a given client
+set @clientid = 1;
+    
+SELECT package_id
+FROM weeklyclients
+WHERE clientid = client_id;
+
