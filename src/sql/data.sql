@@ -254,3 +254,16 @@ insert into managers
 values (4, 3);
 insert into managers
 values (5, 5);
+
+insert into login_cust
+values ('aaaa', '1111', 1)
+insert into login_cust
+values ('HomerSimpson', 'doh', 2)
+insert into login_cust
+values ('username', 'password', 3)
+
+insert into login_worker
+values('bbbb', '2222', 1)
+
+insert into login_man
+values('MontyBurns', 'excellent', 1)
