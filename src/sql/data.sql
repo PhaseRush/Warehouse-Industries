@@ -34,6 +34,7 @@ values (5, 'str4', '001');
 
 
 
+
 insert into workers
 values (1, 'str1', '01', DEFAULT);
 insert into workers
@@ -57,25 +58,25 @@ values (10, 'str3', 't5', 'mon-thurs 12-12');
 
 
 insert into packages
-values (1, 1, DEFAULT, DEFAULT);
+values (1, 1, '2011-02-21', DEFAULT, DEFAULT);
 insert into packages
-values (2, 1, DEFAULT, DEFAULT);
+values (2, 1, '2019-06-15', DEFAULT, DEFAULT);
 insert into packages
-values (3, 1, 'huge', 10000);
+values (3, 1, '2016-06-19', 'huge', 10000);
 insert into packages
-values (4, 2, 'huge', 10000);
+values (4, 2, '2019-06-18', 'huge', 10000);
 insert into packages
-values (5, 3, 'huge', 10000);
+values (5, 3, '2019-06-15', 'huge', 10000);
 insert into packages
-values (6, 4, 'huge', 10000);
+values (6, 4, '2019-05-5', 'huge', 10000);
 insert into packages
-values (7, 4, 'huge', 10000);
+values (7, 4, '2018-03-29', 'huge', 10000);
 insert into packages
-values (8, 4, 'huge', 10000);
+values (8, 4, '2019-06-19', 'huge', 10000);
 insert into packages
-values (9, 4, 'huge', 10000);
+values (9, 4, '2016-12-02', 'huge', 10000);
 insert into packages
-values (10, 4, 'huge', 10000);
+values (10, 4, '2019-01-29', 'huge', 10000);
 
 
 insert into stored_packages
@@ -152,15 +153,15 @@ values (10, 2);
 
 
 insert into warehouse_workers
-values (1, 5, 1, 1);
+values (1, 5, 1, 6);
 insert into warehouse_workers
-values (2, 5, 2, 2);
+values (2, 5, 2, 7);
 insert into warehouse_workers
-values (3, 4, 4, 4);
+values (3, 4, 3, 8);
 insert into warehouse_workers
-values (4, 4, 3, 3);
+values (4, 4, 4, 9);
 insert into warehouse_workers
-values (5, 2, 3, 3);
+values (5, 2, 5, 10);
 
 insert into forklift_models
 values (1, 'small');
@@ -242,27 +243,3 @@ insert into works_at
 values (4, 3);
 insert into works_at
 values (5, 3);
-
-insert into managers
-values (1, 2);
-insert into managers
-values (2, 1);
-insert into managers
-values (3, 4);
-insert into managers
-values (4, 3);
-insert into managers
-values (5, 5);
-
-insert into login_cust
-values ('aaaa', '1111', 1);
-insert into login_cust
-values ('HomerSimpson', 'doh', 2);
-insert into login_cust
-values ('username', 'password', 3);
-
-insert into login_worker
-values ('bbbb', '2222', 1);
-
-insert into login_man
-values ('MontyBurns', 'excellent', 1)
