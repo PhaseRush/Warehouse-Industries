@@ -39,8 +39,9 @@ public class Database {
     String pass = password.getText();
     try {
       Statement login = conn.createStatement();
-      ResultSet id = login.executeQuery("select client_id from login_cust where username = '" + user +
-              "' and pass_word = '" + pass + "'");
+      ResultSet id = login.executeQuery("select * from login_cust log, packages p, cust_track t where " +
+              "username = '" + user + "' and pass_word = '" + pass + "' and p.client_id = log.client_id and p.package_id" +
+              " = t.id");
 
       // debugging stuff, can be removed in finished product
       ResultSetMetaData idmd = id.getMetaData();
@@ -65,16 +66,24 @@ public class Database {
     String pass = password.getText();
     try {
       Statement login = conn.createStatement();
-      ResultSet id = login.executeQuery("select worker_id from login_worker where username = '" + user +
-              "' and pass_word = '" + pass + "'");
+      ResultSet task = login.executeQuery("select id from login_worker l, emp_packages p where username = '"
+              + user + "' and pass_word = '" + pass + "' and l.worker_id = p.worker_id");
+
+      login = conn.createStatement();
+      ResultSet equipment = login.executeQuery("select id from login_worker l, emp_equip e where username = '"
+              + user + "' and pass_word = '" + pass + "' and l.worker_id = e.worker_id");
+
+      login = conn.createStatement();
+      ResultSet warehouse = login.executeQuery("select id from login_worker l, emp_work_at w where username = '"
+              + user + "' and pass_word = '" + pass + "' and l.worker_id = w.worker_id");
 
       // debugging stuff, can be removed in finished product
-      ResultSetMetaData idmd = id.getMetaData();
-      int columnsNumber = idmd.getColumnCount();
-      while (id.next()) {
+      ResultSetMetaData taskmd = task.getMetaData();
+      int columnsNumber = taskmd.getColumnCount();
+      while (task.next()) {
         for (int i = 1; i <= columnsNumber; i++) {
-          String columnValue = id.getString(i);
-          System.out.println(columnValue + " " + idmd.getColumnName(i));
+          String columnValue = task.getString(i);
+          System.out.println(columnValue + " " + taskmd.getColumnName(i));
         }
       }
       //end debugging stuff
