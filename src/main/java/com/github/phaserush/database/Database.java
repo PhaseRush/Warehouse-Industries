@@ -29,6 +29,9 @@ public class Database {
     try {
       Statement smt = conn.createStatement();
       ResultSet rs = smt.executeQuery(text);
+
+      TableView tv = Util.getTableView(rs);
+      Util.showTableWindow(tv);
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
       System.out.println("SQLState: " + ex.getSQLState());
