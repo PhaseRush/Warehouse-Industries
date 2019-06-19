@@ -2,6 +2,7 @@ package com.github.phaserush.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TextField;
 import com.github.phaserush.database.Database;
 
@@ -25,7 +26,7 @@ public class StartController {
   void onSubmitAsEmployee(ActionEvent event) {
     // user put in username and password, then clicked log in as employee
     // tf_username will be what they typed into the username field, etc
-
+    Database.employeeLogin(tf_username, tf_password);
     printFields();
   }
 
@@ -33,6 +34,7 @@ public class StartController {
   void onSubmitAsManager(ActionEvent event) {
     // user put in username and password, then clicked log in as manager
     // tf_username will be what they typed into the username field, etc
+    Database.managerLogin(tf_username, tf_password);
     printFields();
   }
 
