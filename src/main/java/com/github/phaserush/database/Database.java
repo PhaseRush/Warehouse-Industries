@@ -15,7 +15,7 @@ public class Database {
       conn =
           DriverManager.getConnection(
               "jdbc:mysql://localhost:" + port + "/" + dbName, dbUsername, dbPassword);
-      System.out.println("logged into db");
+      System.out.println("Successfully logged into database as " + conn.getMetaData().getUserName());
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
       System.out.println("SQLState: " + ex.getSQLState());
@@ -93,7 +93,7 @@ public class Database {
       ResultSet id = login.executeQuery("select * from login_man where username = '" + user + "' and pass_word = '"
       + pass + "'");
 
-      if (id.next() != false) {
+      if (id.next()) {
 
         login = conn.createStatement();
         ResultSet incoming = login.executeQuery("select * from incoming_packages");

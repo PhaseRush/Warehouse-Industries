@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -25,6 +26,7 @@ public class WarehouseIndustries extends Application {
     Pane startPane = FXMLLoader.load(WarehouseIndustries.class.getResource("start.fxml"));
 
     stage.setTitle("Warehouse Industries Portal");
+    stage.getIcons().add(new Image(WarehouseIndustries.class.getResourceAsStream("red_w.png")));
     stage.setScene(new Scene(startPane));
     stage.show();
   }

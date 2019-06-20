@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,6 +27,12 @@ import java.sql.SQLException;
 
 public class Util {
 
+    /**
+     * given file path read file to string
+     *
+     * @param path filepath
+     * @return file contents as string
+     */
     public static String readFileToString(String path) {
         try {
             return Files.readString(Path.of(path));
@@ -68,9 +75,8 @@ public class Util {
     /**
      * Returns a table that represents the result set
      *
-     * @param rs
-     * @return
-     * @throws SQLException
+     * @param rs the sql result set representing the result of a query
+     * @return a tableview representing the result set
      */
     public static TableView getTableView(ResultSet rs) {
         TableView tableView = new TableView();
@@ -121,12 +127,13 @@ public class Util {
     }
 
     /**
-     * show a new window with the table
+     * show a new window with the table and window name
      *
      * @param tableView
      */
     public static void showTableWindow(TableView tableView, String windowName) {
         Stage stage = new Stage();
+        stage.getIcons().add(new Image(WarehouseIndustries.class.getResourceAsStream("red_w.png")));
         stage.setTitle(windowName);
         Scene scene = new Scene(tableView);
         stage.setScene(scene);
