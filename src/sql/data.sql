@@ -57,26 +57,28 @@ insert into workers
 values (10, 'str3', 't5', 'mon-thurs 12-12');
 
 
+
 insert into packages
-values (1, 1, '2011-02-21', DEFAULT, DEFAULT);
+values (1, 1, DEFAULT, DEFAULT, '2011-02-21');
 insert into packages
-values (2, 1, '2019-06-15', DEFAULT, DEFAULT);
+values (2, 1, DEFAULT, DEFAULT, '2019-06-15');
 insert into packages
-values (3, 1, '2016-06-19', 'huge', 10000);
+values (3, 1, 'huge', 10000, '2016-06-19');
 insert into packages
-values (4, 2, '2019-06-18', 'huge', 10000);
+values (4, 2, 'huge', 10000, '2019-06-18');
 insert into packages
-values (5, 3, '2019-06-15', 'huge', 10000);
+values (5, 3, 'huge', 10000, '2019-06-15');
 insert into packages
-values (6, 4, '2019-05-5', 'huge', 10000);
+values (6, 4, 'huge', 10000, '2019-05-5');
 insert into packages
-values (7, 4, '2018-03-29', 'huge', 10000);
+values (7, 4, 'huge', 10000, '2018-03-29');
 insert into packages
-values (8, 4, '2019-06-19', 'huge', 10000);
+values (8, 4, 'huge', 10000, '2019-06-19');
 insert into packages
-values (9, 4, '2016-12-02', 'huge', 10000);
+values (9, 4, 'huge', 10000, '2016-12-02');
 insert into packages
-values (10, 4, '2019-01-29', 'huge', 10000);
+values (10, 4, 'huge', 10000, '2019-01-29');
+
 
 
 insert into stored_packages
@@ -243,3 +245,15 @@ insert into works_at
 values (4, 3);
 insert into works_at
 values (5, 3);
+
+
+insert into managers
+values (1, 2);
+insert into managers
+values (2, 1);
+insert into managers
+values (3, 4);
+insert into managers
+values (4, 3);
+insert into managers
+values (5, 5);

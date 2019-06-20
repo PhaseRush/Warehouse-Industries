@@ -125,8 +125,9 @@ public class Util {
      *
      * @param tableView
      */
-    public static void showTableWindow(TableView tableView) {
+    public static void showTableWindow(TableView tableView, String windowName) {
         Stage stage = new Stage();
+        stage.setTitle(windowName);
         Scene scene = new Scene(tableView);
         stage.setScene(scene);
         stage.show();

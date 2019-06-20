@@ -15,6 +15,7 @@ public class Database {
       conn =
           DriverManager.getConnection(
               "jdbc:mysql://localhost:" + port + "/" + dbName, dbUsername, dbPassword);
+      System.out.println("logged into db");
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
       System.out.println("SQLState: " + ex.getSQLState());
@@ -31,7 +32,7 @@ public class Database {
       ResultSet rs = smt.executeQuery(text);
 
       TableView tv = Util.getTableView(rs);
-      Util.showTableWindow(tv);
+      Util.showTableWindow(tv, "SQL Query Result");
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
       System.out.println("SQLState: " + ex.getSQLState());
@@ -49,7 +50,7 @@ public class Database {
               " = t.id");
 
       TableView tv = Util.getTableView(id);
-      Util.showTableWindow(tv);
+      Util.showTableWindow(tv, "Client information");
 
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
@@ -74,16 +75,14 @@ public class Database {
       ResultSet warehouse = login.executeQuery("select id from login_worker l, emp_work_at w where username = '"
               + user + "' and pass_word = '" + pass + "' and l.worker_id = w.worker_id");
 
-      // debugging stuff, can be removed in finished product
-      ResultSetMetaData taskmd = task.getMetaData();
-      int columnsNumber = taskmd.getColumnCount();
-      while (task.next()) {
-        for (int i = 1; i <= columnsNumber; i++) {
-          String columnValue = task.getString(i);
-          System.out.println(columnValue + " " + taskmd.getColumnName(i));
-        }
-      }
-      //end debugging stuff
+        TableView tv = Util.getTableView(task);
+        Util.showTableWindow(tv, "Tasks");
+
+        TableView tv2 = Util.getTableView(equipment);
+        Util.showTableWindow(tv2, "Equipment ID");
+
+        TableView tv3 = Util.getTableView(warehouse);
+        Util.showTableWindow(tv3, "Warehouses");
 
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
@@ -103,7 +102,7 @@ public class Database {
       if (id.next() != false) {
 
         login = conn.createStatement();
-        ResultSet incoming = login.executeQuery("select * from incomingpackage");
+        ResultSet incoming = login.executeQuery("select * from incoming_packages");
 
         login = conn.createStatement();
         ResultSet outoing = login.executeQuery("select * from outgoingpackage");

@@ -34,9 +34,9 @@ WHERE package_id = outpid AND sid = storage_id;
 #if truck_id is not null then a worker is truck driver,
 #if package_id is not null then a worker is a warehouse worker
 create view combinedworker AS
-	SELECT w.worker_id, t.truck_id, ww.package_id
-    FROM worker w
-	LEFT OUTER JOIN truck_driver d
+	SELECT w.worker_id, d.truck_id, ww.package_id #wtf is t
+    FROM workers w
+	LEFT OUTER JOIN truck_drivers d
 		ON w.worker_id = d.worker_id
 	LEFT OUTER JOIN warehouse_workers ww
 		ON w.worker_id = ww.worker_id;
