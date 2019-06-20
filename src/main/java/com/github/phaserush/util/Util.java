@@ -104,6 +104,7 @@ public class Util {
         /**
          * ****************************** Data added to ObservableList * ******************************
          */
+
         try {
             while (rs.next()) {
                 // Iterate Row
@@ -129,7 +130,8 @@ public class Util {
     /**
      * show a new window with the table and window name
      *
-     * @param tableView
+     * @param tableView  is the table to show
+     * @param windowName is the name of the window
      */
     public static void showTableWindow(TableView tableView, String windowName) {
         Stage stage = new Stage();
