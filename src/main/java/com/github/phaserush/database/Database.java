@@ -19,6 +19,8 @@ public class Database {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+
+            error(ex);
         }
     }
 
@@ -33,9 +35,7 @@ public class Database {
             TableView tv = Util.getTableView(rs);
             Util.showTableWindow(tv, "SQL Query Result");
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            error(ex);
         }
     }
 
@@ -51,9 +51,7 @@ public class Database {
             Util.showTableWindow(Util.getTableView(id), "Client information");
 
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            error(ex);
         }
     }
 
@@ -78,9 +76,7 @@ public class Database {
             Util.showTableWindow(Util.getTableView(warehouse), "Warehouses");
 
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            error(ex);
         }
     }
 
@@ -129,10 +125,16 @@ public class Database {
 
 
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            error(ex);
         }
+    }
+
+    private static void error(SQLException e) {
+        Util.showAlert("SQLException",
+                String.format("SQLException: %s\nSQLState: %s\nVendorError: %s",
+                        e.getMessage(),
+                        e.getSQLState(),
+                        e.getErrorCode()));
     }
 
 }

@@ -16,8 +16,6 @@ import java.io.IOException;
 /** JavaFX WarehouseIndustries */
 public class WarehouseIndustries extends Application {
 
-  public static Scene scene;
-
   private static Config config =
       new Gson().fromJson(Util.readFileToString("data/config.json"), Config.class);
 

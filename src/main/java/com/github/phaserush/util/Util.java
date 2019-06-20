@@ -63,15 +63,6 @@ public class Util {
         alertWindow.showAndWait(); // blocks until user resolves (clicks ok)
     }
 
-    public static void setRoot(String fxml) throws IOException {
-        WarehouseIndustries.scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(WarehouseIndustries.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-
     /**
      * Returns a table that represents the result set
      *
