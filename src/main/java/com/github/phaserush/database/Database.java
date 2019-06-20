@@ -49,8 +49,7 @@ public class Database {
               "username = '" + user + "' and pass_word = '" + pass + "' and p.client_id = log.client_id and p.package_id" +
               " = t.id");
 
-      TableView tv = Util.getTableView(id);
-      Util.showTableWindow(tv, "Client information");
+      Util.showTableWindow(Util.getTableView(id), "Client information");
 
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
@@ -75,14 +74,9 @@ public class Database {
       ResultSet warehouse = login.executeQuery("select id from login_worker l, emp_work_at w where username = '"
               + user + "' and pass_word = '" + pass + "' and l.worker_id = w.worker_id");
 
-        TableView tv = Util.getTableView(task);
-        Util.showTableWindow(tv, "Tasks");
-
-        TableView tv2 = Util.getTableView(equipment);
-        Util.showTableWindow(tv2, "Equipment ID");
-
-        TableView tv3 = Util.getTableView(warehouse);
-        Util.showTableWindow(tv3, "Warehouses");
+        Util.showTableWindow(Util.getTableView(task), "Tasks");
+        Util.showTableWindow(Util.getTableView(equipment), "Equipment ID");
+        Util.showTableWindow(Util.getTableView(warehouse), "Warehouses");
 
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
@@ -105,10 +99,10 @@ public class Database {
         ResultSet incoming = login.executeQuery("select * from incoming_packages");
 
         login = conn.createStatement();
-        ResultSet outoing = login.executeQuery("select * from outgoingpackage");
+        ResultSet outgoing = login.executeQuery("select * from outgoingpackage");
 
         login = conn.createStatement();
-        ResultSet workers = login.executeQuery("SELECT worker_id, truck_id, package_id FROM combined worker;");
+        ResultSet workers = login.executeQuery("SELECT worker_id, truck_id, package_id FROM combinedworker;");
 
         login = conn.createStatement();
         ResultSet storedPackages = login.executeQuery("select * from storedpackages");
@@ -125,18 +119,17 @@ public class Database {
         ResultSet clientOrderedThisWeek = login.executeQuery("SELECT COUNT(client_id), package_id FROM " +
                 "weeklyclients GROUP BY client_id;");
 
+        Util.showTableWindow(Util.getTableView(incoming), "Incoming Packages");
+        Util.showTableWindow(Util.getTableView(outgoing), "Outgoing Packages");
+        Util.showTableWindow(Util.getTableView(workers), "Workers");
+        Util.showTableWindow(Util.getTableView(storedPackages), "Stored Packages");
+        Util.showTableWindow(Util.getTableView(truckCapacities), "Truck Capacities");
+        Util.showTableWindow(Util.getTableView(drivesAllForklifts), "Drives all Forklifts");
+        Util.showTableWindow(Util.getTableView(clientOrderedThisWeek), "Ordered this week");
       }
 
-      // debugging stuff, can be removed in finished product
-      ResultSetMetaData idmd = id.getMetaData();
-      int columnsNumber = idmd.getColumnCount();
-      while (id.next()) {
-        for (int i = 1; i <= columnsNumber; i++) {
-          String columnValue = id.getString(i);
-          System.out.println(columnValue + " " + idmd.getColumnName(i));
-        }
-      }
-      //end debugging stuff
+
+
 
     } catch (SQLException ex) {
       System.out.println("SQLException: " + ex.getMessage());
