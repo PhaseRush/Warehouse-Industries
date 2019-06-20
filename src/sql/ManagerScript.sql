@@ -14,7 +14,7 @@ WHERE event_id = eid AND package_id = inpid;
 
 #Create a view of outgoing package
 create view outgoingpackage AS
-	SELECT p.package_size, p.package_weight, p.arrival_date, s.package_id, s.storage_id
+	SELECT p.package_size, p.package_weight, p.delivery_date, s.package_id, s.storage_id
     FROM packages p
     RIGHT OUTER JOIN stored_packages s 
 		ON p.package_id = s.package_id
@@ -34,7 +34,7 @@ WHERE package_id = outpid AND sid = storage_id;
 #if truck_id is not null then a worker is truck driver,
 #if package_id is not null then a worker is a warehouse worker
 create view combinedworker AS
-	SELECT w.worker_id, d.truck_id, ww.package_id #wtf is t
+	SELECT w.worker_id, d.truck_id, ww.package_id
     FROM workers w
 	LEFT OUTER JOIN truck_drivers d
 		ON w.worker_id = d.worker_id
@@ -45,7 +45,7 @@ create view combinedworker AS
 set @wid = 1;
 
 SELECT worker_id, truck_id, package_id
-FROM combined worker;
+FROM combinedworker;
 
 # Update a warehouse worker's role (updates worker because package_id is foreign key)
 set @role = "";
@@ -105,17 +105,18 @@ CREATE VIEW storedpackages AS
 	SELECT s.package_id, w.capacity
     FROM warehouses w
     LEFT JOIN stores s ON
-		h.warehouse_id = s.warehouse_id
+		w.warehouse_id = s.warehouse_id
 	LEFT JOIN stored_packages p ON
 		p.package_id = s.package_id
 	#client_id is null when there is no delivery date
-	WHERE s.delivery_date IS NULL
+	WHERE p.delivery_date IS NULL
     ORDER BY w.warehouse_id;
 
 # Finds how filled a truck is
 CREATE VIEW filledcap AS
-	SELECT t.truck_id, t.capacity-t.package_weight AS remaining_cap
-    FROM trucks t;
+	SELECT t.truck_id, t.capacity-p.package_weight AS remaining_cap
+    FROM trucks t, packages p
+    WHERE t.package_id = p.package_id;
 
 #Returns workers that drive all forklifts
 select w.worker_id 
